@@ -1,0 +1,54 @@
+<div style="display: flex; align-items: stretch; flex-direction: column; width: 100%;">
+    <h1 style="align-self: center;">
+        Available Movies
+    </h1>
+
+    <div class="mat-elevation-z8">
+        <mat-list style="background: lightgray;">
+            <mat-list-item>
+                <div mat-line style="display: flex; justify-content: space-between;">
+                    <h4> Name </h4>
+                    <h4> Producer </h4>
+                    <h4> Price </h4>
+                    <h4> Availability</h4>
+                </div>
+            </mat-list-item>
+            <mat-list-item *ngFor="let movie of movies" style="background: #428dd8;">
+                <div mat-line style="display: flex; justify-content: space-around; flex: 1;">
+                    <h4> {{ movie.name }} </h4>
+                    <h4> {{ movie.producer }} </h4>
+                    <h4> {{ movie.price }} </h4>
+                    <p *ngIf="movie.status == 0; else notShow" style='color: blue;'>Available</p>
+                    <ng-template #notShow>
+                        <p style='color: red;'>Taken</p>
+                    </ng-template>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+
+    <h1>
+        Add new Movie
+    </h1>
+
+    <div class="mat-elevation-z8" style="background: #428dd8; padding: 2em;">
+        <div>Insert the movie's info to add them to the list</div>
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" value="" #Name>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Producer Name" value="" #Producer>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <!-- <span matPrefix>+961 &nbsp;</span> -->
+                <input matInput placeholder="Price" #Price>
+            </mat-form-field>
+            <button mat-raised-button color="primary"
+                (click)="addNewMovie(Name.value, Producer.value, Price.value)">Submit</button>
+        </form>
+    </div>
+</div>

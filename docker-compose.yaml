@@ -1,0 +1,44 @@
+version : "2"
+services : 
+  mongo :  
+    image : mongo
+    restart : always
+    container_name : mongodb
+    environment : 
+      user : admin
+      password : pass
+    volumes : 
+      - C:/Users/LENOVO/Desktop/3eme - Sem1/Integration des applications d'entreprise/integration-microservices-nodejs/BackEnd/data:/var/lib/mongodb/data
+    ports:
+      - '27017:27017'
+  mongo-express:
+    image : mongo-express
+    restart : always
+    ports :
+      - '8081:8081'
+  frontend:
+    container_name: FrontEnd
+    build: ./FrontEnd
+    ports:
+      - "4200:4200"
+  apigateway:
+    container_name : api-gateway
+    build : ./BackEnd/api-gateway
+    ports : 
+      - '8080:8080'
+  customers:
+    container_name : customers-service
+    build : ./BackEnd/customers-service
+    ports : 
+      - '8082:8082'
+  orders:
+    container_name : orders-service
+    build : ./BackEnd/orders-service
+    ports : 
+      - '8083:8083'
+  products:
+    container_name : products-service
+    build : ./BackEnd/products-service
+    ports : 
+      - '8084:8084'
+  

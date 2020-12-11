@@ -1,0 +1,79 @@
+
+
+<div style="display: flex; align-items: stretch; flex-direction: column; width: 100%;">
+    <h1 style="align-self: center;">
+        List of Orders
+    </h1>
+
+    <div class="mat-elevation-z8">
+        <mat-list style="background: lightgray;">
+            <mat-list-item>
+                <div mat-line style="display: flex; justify-content: space-between;">
+                    <h4> Name </h4>
+                    <h4> Email </h4>
+                    <h4> Location </h4>
+                    <h4> Purchased Movies </h4>
+                </div>
+            </mat-list-item>
+            <mat-list-item *ngFor="let customer of customers" style="background: #428dd8;">
+                <div mat-line style="display: flex; justify-content: space-around; flex: 1;">
+                    <h4> {{ customer.name }} </h4>
+                    <h4> {{ customer.email }} </h4>
+                    <h4> {{ customer.location }} </h4>
+                    <h4> {{ customer.movies }} </h4>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+
+    <h1 style="align-self: center;">
+        Make new Order
+    </h1>
+
+    <!-- <div class="mat-elevation-z8" style="background: #428dd8; padding: 2em;">
+        <div>Insert the customers's info to add them to the list</div>
+
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" value="" #Name>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" value="" #email>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Location" #location>
+            </mat-form-field>
+            <button mat-raised-button color="primary"
+                (click)="addNewCustomer(Name.value, email.value, location.value)">Submit</button>
+        </form>
+    </div> -->
+
+    <mat-card style="background: #428dd8; padding: 2em;">
+        <mat-card-header>
+            <mat-card-title>Orders</mat-card-title>
+            <mat-card-subtitle>please specify the id of the book you want to rent the the customer's id
+            </mat-card-subtitle>
+        </mat-card-header>
+
+
+        <mat-form-field style="margin-left: 2em">
+            <mat-label>Choose a Customer</mat-label>
+            <select matNativeControl [(ngModel)]="selectedCustomer">
+                <option value={{customer.firstName}} *ngFor="let customer of customers">{{customer.firstName}}
+                    {{customer.lastName}}</option>
+            </select>
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 2em">
+            <mat-label>Choose a Movie</mat-label>
+            <select matNativeControl [(ngModel)]="selectedMovie">
+                <option value={{movie.name}} *ngFor="let movie of movies">{{book.name}}</option>
+            </select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" style="margin-left: 2em" (click)="makeOrder()">Order!</button>
+
+    </mat-card>
+</div>
